@@ -1,16 +1,19 @@
 // Create Web Server
+// 1. Create an express application
+// 2. Create a route for GET /comments
+// 3. Respond with an array of comments
+// 4. Listen on port 3000
+
 const express = require('express');
 const app = express();
 
-// Create a new comment
-app.post('/comments', (req, res) => {
-  const { body } = req;
-  const { comment } = body;
-  console.log('Comment:', comment);
-  res.send('Comment posted');
+app.get('/comments', (req, res) => {
+  res.json([
+    { username: 'Todd', comment: 'lololol' },
+    { username: 'Skyler', comment: 'lmao' },
+    { username: 'Sk8erBoi', comment: 'rofl' },
+    { username: 'Ada', comment: 'hahaha' }
+  ]);
 });
 
-// Start the server
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
-});
+app.listen(3000);
