@@ -2,29 +2,15 @@
 const express = require('express');
 const app = express();
 
-// Create Body Parser
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-
-// Create Comment Array
-const comments = [
-    { username: 'alice', comment: 'I love you' },
-    { username: 'bob', comment: 'I hate you' }
-];
-
-// Get Comments
-app.get('/comments', (req, res) => {
-    res.send(comments);
-});
-
-// Post Comments
+// Create a new comment
 app.post('/comments', (req, res) => {
-    const comment = req.body;
-    comments.push(comment);
-    res.send('Successfully added comment');
+  const { body } = req;
+  const { comment } = body;
+  console.log('Comment:', comment);
+  res.send('Comment posted');
 });
 
-// Listen Web Server
+// Start the server
 app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+  console.log('Server is running on http://localhost:3000');
 });
